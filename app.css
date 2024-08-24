@@ -1,0 +1,19 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(247, 254, 255, 0.3);
+}
+
+.container {
+    text-align: center;
+}
+
+canvas {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: solid 1px rgb(223, 240, 252);
+    color: #19335c
+}
