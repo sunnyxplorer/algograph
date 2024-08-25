@@ -1,5 +1,6 @@
 import { canvas, context } from "./canvas.js";
 import submap from "./submap.js"
+import phase_synthesis from "./phasing.js";
 
     const config = {
         separation: 1,
