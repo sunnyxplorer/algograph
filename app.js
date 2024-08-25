@@ -1,6 +1,5 @@
 import { canvas, context } from "./canvas.js";
 import submap from "./submap.js"
-import phase_synthesis from "./phasing.js";
 
     const config = {
         separation: 1,
@@ -16,7 +15,6 @@ document.addEventListener('keydown', (event) => {
     context.clearRect(0,0, canvas.width, canvas.height)
    submap(config);
 })
-
 
 
 

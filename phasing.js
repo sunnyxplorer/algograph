@@ -7,14 +7,10 @@ function calc_distance(x1, y1, x2, y2){
 }
 
 function calc_inclination(x1, y1, x2, y2){
-
     const delta_x = x2 - x1;
     const delta_y = y2 - y1;
 
-
     const angle_radians = Math.atan2(delta_y, delta_x);
-    
-
     let angle_degrees = angle_radians * (180 / Math.PI);
     
     let northwise_angle = 90 - angle_degrees;
@@ -28,7 +24,7 @@ function calc_inclination(x1, y1, x2, y2){
     return northwise_angle;
 }
 function compute_amplitude(){
-    const step = 10
+    const step = 1
     return step + (Math.floor(Math.random() * 6) * step)
 }
 function arbitrary_orientation(){
@@ -48,22 +44,23 @@ function map_point(x, y, northwise_angle, length) {
 function phase_synthesis(endpoints){
     const {x1, y1, xn, yn } = endpoints
     const slope = calc_inclination(x1, y1, xn, yn)
-    const synth = [{ x: x1, y: y1}]
+    // const synth = [{ x: x1, y: y1}]
+    const synth = []
     const interval = 10
 
     function loop_insert(inline_distance, x, y){
         const difference = calc_distance(x, y, xn, yn)
             if(difference <= interval){
-                synth.push({x: xn, y: yn})
+                // synth.push({x: xn, y: yn})
                 return
             }
-        const inline_next = map_point(x, y, slope, inline_distance )
+        const inline_next = map_point(x1, y1, slope, inline_distance )
         const amp = compute_amplitude()
         const orient = arbitrary_orientation()
         const trend_point = map_point(inline_next.x, inline_next.y, (orient + slope), amp )
         synth.push({
-            x: Math.floor(trend_point.x),
-            y: Math.floor(trend_point.y)
+            x: Math.round(trend_point.x),
+            y: Math.round(trend_point.y)
         })
         loop_insert(inline_distance + interval, inline_next.x, inline_next.y)
     }
@@ -71,4 +68,4 @@ function phase_synthesis(endpoints){
     return synth
 }
 
-// export default phase_synthesis
+export default phase_synthesis

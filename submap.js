@@ -1,4 +1,5 @@
 import { context } from "./canvas.js";
+import phase_synthesis from "./phasing.js"
 
 export default function submap(config){
         const { separation, orbits, cardinals, center } = config
@@ -26,8 +27,8 @@ export default function submap(config){
         const positions = angles.map(angle => angular_cords(angle));
 
         /** Draw faint outline */ 
-        const vertices = positions.concat(positions[0])
-        context.polyline(vertices)
+        // const vertices = positions.concat(positions[0])
+        // context.polyline(vertices)
 
         function quadraticBezier(start, control, end){
             context.beginPath()
@@ -44,8 +45,23 @@ export default function submap(config){
             }
         }
 
-        const transition_vertices = []
+        const phase_vertices = []
         positions.forEach((vtx, index, array) => {
+            const current = vtx;
+            const next = (index === array.length - 1) ? array[0] : array[index + 1];
+
+            const interpoints = phase_synthesis({
+                x1: current.x,
+                y1: current.y,
+                xn: next.x,
+                yn: next.y
+            })
+            phase_vertices.push(current, ...interpoints)
+        }
+);
+            context.polyline(phase_vertices)
+        const transition_vertices = []
+        phase_vertices.forEach((vtx, index, array) => {
             const last = array.at(index - 1)
             const current = vtx;
             const next = (index === array.length - 1) ? array[0] : array[index + 1];
@@ -61,6 +77,6 @@ export default function submap(config){
         })
 
         transition_vertices.forEach(pos => {
-            quadraticBezier(pos.start, pos.control, pos.end)
+            // quadraticBezier(pos.start, pos.control, pos.end)
         })
     }
