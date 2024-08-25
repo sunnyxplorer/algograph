@@ -59,7 +59,6 @@ export default function submap(config){
             phase_vertices.push(current, ...interpoints)
         }
 );
-            context.polyline(phase_vertices)
         const transition_vertices = []
         phase_vertices.forEach((vtx, index, array) => {
             const last = array.at(index - 1)
@@ -77,6 +76,6 @@ export default function submap(config){
         })
 
         transition_vertices.forEach(pos => {
-            // quadraticBezier(pos.start, pos.control, pos.end)
+            quadraticBezier(pos.start, pos.control, pos.end)
         })
     }

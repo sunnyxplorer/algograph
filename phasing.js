@@ -44,14 +44,12 @@ function map_point(x, y, northwise_angle, length) {
 function phase_synthesis(endpoints){
     const {x1, y1, xn, yn } = endpoints
     const slope = calc_inclination(x1, y1, xn, yn)
-    // const synth = [{ x: x1, y: y1}]
     const synth = []
-    const interval = 10
+    const interval = 20
 
     function loop_insert(inline_distance, x, y){
         const difference = calc_distance(x, y, xn, yn)
             if(difference <= interval){
-                // synth.push({x: xn, y: yn})
                 return
             }
         const inline_next = map_point(x1, y1, slope, inline_distance )
