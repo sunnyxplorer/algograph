@@ -16,7 +16,7 @@ const context = canvas.getContext('2d');
         for (let index = 1; index < poly.length; index++) {
             context.lineTo(poly[index].x, poly[index].y);
         }
-        context.strokeStyle = '#afcde344';
+        context.strokeStyle = '#ff730028';
         context.lineWidth = 1;
         context.stroke();
     };

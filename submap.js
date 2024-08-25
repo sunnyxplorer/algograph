@@ -26,8 +26,8 @@ export default function submap(config){
         const positions = angles.map(angle => angular_cords(angle));
 
         /** Draw faint outline */ 
-        // const vertices = positions.concat(positions[0])
-        // context.polyline(vertices)
+        const vertices = positions.concat(positions[0])
+        context.polyline(vertices)
 
         function quadraticBezier(start, control, end){
             context.beginPath()

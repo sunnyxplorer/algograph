@@ -1,22 +1,22 @@
+import { canvas, context } from "./canvas.js";
 import submap from "./submap.js"
 
+    const config = {
+        separation: 1,
+        orbits: 400,
+        cardinals: 12,
+        center: {x: 400, y: 400}
+    };
 
-const config1 = {
-    separation: 50,
-    orbits: 6,
-    cardinals: 12,
-    center: {x: 250, y: 400}
-};
+    submap(config)
 
-const config2 = {
-    separation: 50,
-    orbits: 6,
-    cardinals: 12,
-    center: {x: 750, y: 400}
-}
+document.addEventListener('keydown', (event) => {
+    if(event.code !== 'Space') return;
+    context.clearRect(0,0, canvas.width, canvas.height)
+   submap(config);
+})
 
-submap(config1)
-submap(config2)
+
 
 
 
